@@ -1,0 +1,28 @@
+<section class="container mx-auto flex flex-col justify-center items-center">
+  <div class="flex flex-col items-center">
+    <h1 class="text-7xl sm:text-9xl font-bold my-1">MyQuizz</h1>
+    <h3 class="text-2xl font-bold mt-8">{{title}}</h3>
+  </div>
+
+  <div class="flex justify-center items-center text-center bg-purple-600 w-full h-50 m-4 rounded" *ngIf=!finished >
+    <h3 class="text-3xl font-bold">{{questionSelected.question}}</h3>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 w-full px-2 sm:px-0" *ngIf=!finished>
+
+    <button
+    class="text-2xl border rounded p-2 transition-transform duration-200 hover:scale-105 w-full"
+    *ngFor="let option of questionSelected.options; let i = index"
+    (click)="playerChoose(option.alias)"
+    [class.col-span-2]="questionSelected.options.length % 2 !== 0 && i === questionSelected.options.length - 1"
+    >
+      {{ option.name }}
+    </button>
+
+  </div>
+
+  <div class="flex flex-col justify-center text-center bg-purple-900 w-full py-30 m-4" *ngIf=finished>
+    <h1 class="text-4xl font-bold">O seu resultado é:</h1>
+    <p class="text-2xl">{{ answerSelected }}</p>
+  </div>
+</section>
